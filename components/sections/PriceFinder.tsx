@@ -39,8 +39,8 @@ export function PriceFinder({ fromPrices }: Props) {
         })}
       </div>
 
-      <div className="mt-8 grid overflow-hidden rounded-[var(--radius-card)] border border-line lg:grid-cols-2">
-        <div className="p-8 md:p-10 lg:border-r lg:border-line">
+      <div className="mt-8 grid overflow-hidden rounded-[var(--radius-card)] border border-line bg-white lg:grid-cols-2">
+        <div className="bg-white p-8 md:p-10 lg:border-r lg:border-line">
           <h3 className="text-2xl font-semibold">{plan.name}</h3>
           <p className="mt-2 text-ink-600">
             {plan.hoursPerMonth} hours per month · {plan.approxDaily}

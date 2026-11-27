@@ -15,10 +15,12 @@ test.describe("Homepage", () => {
     await page.goto("/");
     await page.getByRole("main").getByRole("link", { name: "Book a Discovery Call" }).first().click();
     await expect(page).toHaveURL(/\/book-a-call$/);
-    await expect(page.getByRole("link", { name: /Choose a time in Calendly/ })).toHaveAttribute(
+    await expect(page.getByRole("link", { name: /open Calendly in a new tab/ })).toHaveAttribute(
       "href",
       "https://calendly.com/pbercasio-onqueueva/45min-1",
     );
+    await page.getByRole("button", { name: "Show available times" }).click();
+    await expect(page.locator('iframe[title*="Calendly"]')).toHaveAttribute("src", /calendly\.com\/pbercasio-onqueueva\/45min-1/);
   });
 
   test("portal and ON-QUEUE AI links point to the right destinations", async ({ page }) => {

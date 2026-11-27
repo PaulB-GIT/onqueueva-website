@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { site } from "@/content/site";
-import { ButtonLink } from "@/components/ui/ButtonLink";
+import { CalendlyEmbed } from "@/components/sections/CalendlyEmbed";
 
 export const ensureStatic = "navigation";
 
@@ -17,18 +17,18 @@ const agenda = [
   "How matching, the free trial and onboarding work",
 ];
 
-/**
- * Interim version for the Phase 4 review so the primary CTA works end to end.
- * The full page (with on-demand embed and form fallback) is built in Phase 4b.
- */
 export default function BookACallPage() {
   return (
     <section className="section-y">
-      <div className="container-site grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
+      <div className="container-site grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16">
         <div>
-          <h1 className="text-[2.25rem] font-bold leading-tight md:text-5xl">Book a discovery call</h1>
+          <p className="flex items-center gap-3 text-[0.8125rem] font-semibold uppercase tracking-[0.08em] text-ink-600">
+            <span aria-hidden="true" className="inline-block h-[3px] w-8 bg-gold-500" />
+            45-minute video call
+          </p>
+          <h1 className="mt-4 text-[2.25rem] font-bold leading-tight md:text-5xl">Book a discovery call</h1>
           <p className="mt-5 text-lg leading-relaxed text-ink-700">
-            A 45-minute video call to understand your business and see whether we’re a good fit.
+            Tell us about your business, and we’ll see together whether we’re a good fit.
           </p>
           <h2 className="mt-10 text-lg font-semibold">What we’ll cover</h2>
           <ul className="mt-3 list-disc space-y-2 pl-5 text-ink-700">
@@ -36,10 +36,11 @@ export default function BookACallPage() {
               <li key={a}>{a}</li>
             ))}
           </ul>
-          <p className="mt-8 text-ink-600">
-            If we’re a good fit, we’ll email you a short trial form, and you can start with up to 4 free hours.
+          <h2 className="mt-10 text-lg font-semibold">After the call</h2>
+          <p className="mt-3 text-ink-700">
+            If we’re a good fit, we email you a short trial form and you can start with up to 4 free hours.
           </p>
-          <p className="mt-4 text-ink-600">
+          <p className="mt-8 text-ink-600">
             Prefer email? Write to{" "}
             <a className="font-semibold text-blue-600 hover:underline" href={`mailto:${site.email}`}>
               {site.email}
@@ -47,14 +48,10 @@ export default function BookACallPage() {
             . {site.responsePromise}
           </p>
         </div>
-        <div className="flex flex-col rounded-[var(--radius-card)] border border-line bg-neutral-50 p-8 md:p-10">
+        <div className="rounded-[var(--radius-card)] border border-line bg-neutral-50 p-6 md:p-10">
           <h2 className="text-xl font-semibold">Pick a time that suits you</h2>
-          <p className="mt-2 text-ink-600">Scheduling opens in Calendly. Times are shown in your own time zone.</p>
-          <div className="mt-8">
-            <ButtonLink href={site.discoveryCallUrl} size="lg" external>
-              Choose a time in Calendly
-            </ButtonLink>
-          </div>
+          <p className="mt-2 mb-8 text-ink-600">Times are shown in your own time zone.</p>
+          <CalendlyEmbed url={site.discoveryCallUrl} />
         </div>
       </div>
     </section>
