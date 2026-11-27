@@ -29,7 +29,7 @@ export const viewport: Viewport = {
   themeColor: "#0A4889",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className="h-full">
       <body className="flex min-h-full flex-col">
