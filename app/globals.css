@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+/*
+ * ON-QUEUE VA design tokens (Phase 3, approved 27 Nov 2026).
+ * Gold #EDBF0C has 1.74:1 contrast on white: never use it for text on white.
+ */
+@theme {
+  --color-blue-50: #eef4fb;
+  --color-blue-100: #d6e4f4;
+  --color-blue-600: #0a4889;
+  --color-blue-700: #083a6e;
+  --color-navy-900: #071f3b;
+  --color-gold-50: #fdf8e1;
+  --color-gold-500: #edbf0c;
+  --color-gold-700: #7a5e00;
+  --color-ink-900: #172334;
+  --color-ink-700: #3f4b5b;
+  --color-ink-600: #5b6675;
+  --color-neutral-50: #f5f7fa;
+  --color-line: #e3e8ef;
+  --color-line-strong: #c9d2de;
+
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans Variable", "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-control: 0.5rem;
+  --radius-card: 1rem;
+
+  --shadow-float: 0 12px 32px rgb(7 31 59 / 0.08);
+
+  --container-site: 75rem;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: #ffffff;
+    color: var(--color-ink-900);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      font-size: 1.0625rem;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    color: var(--color-ink-900);
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-blue-600);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .on-dark :focus-visible {
+    outline-color: var(--color-gold-500);
+  }
+
+  ::selection {
+    background: var(--color-gold-500);
+    color: var(--color-navy-900);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@utility container-site {
+  width: 100%;
+  max-width: var(--container-site);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (min-width: 768px) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility section-y {
+  padding-block: 4rem;
+  @media (min-width: 1024px) {
+    padding-block: 6rem;
+  }
+}
