@@ -16,3 +16,7 @@ Full context: Phase 1–3 documents in the claude.ai project "ON-QUEUE VA — WE
 | 2026-11-27 | `/book-a-call` interim version (button to Calendly) | Keeps the primary CTA working during review; full page with on-demand embed comes with the remaining pages. |
 | 2026-11-27 | Testimonials stored verbatim with `photoAllowed: false` | Founder: Townsi F.'s photo must not be used. |
 | 2026-11-27 | Direct Hire not built | Deferred by founder; route `/direct-hire` reserved. |
+| 2026-11-27 | `/Contact` redirect dropped | Next.js matches paths case-insensitively, so the rule looped; `/Contact` already serves the contact page. |
+| 2026-11-27 | Referral terms migrated by meaning, pending founder confirmation of exact wording | The original text could not be extracted verbatim; reward and conditions unchanged. |
+| 2026-11-27 | Privacy Policy and Terms carry a visible "Draft for legal review" notice | Must be removed only after legal sign-off, before launch. |
+| 2026-11-27 | About page founder section is a draft | Built from facts the founder shared; needs founder approval and a photo. |

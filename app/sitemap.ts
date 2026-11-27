@@ -1,8 +1,27 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/content/site";
+import { serviceCategories } from "@/content/services";
+import { industries } from "@/content/industries";
 
 /** Only pages that exist are listed; pages are added as they are built. */
-const routes = ["/", "/pricing", "/how-it-works", "/free-trial", "/book-a-call"];
+const routes = [
+  "/",
+  "/services",
+  ...serviceCategories.map((s) => s.href),
+  "/industries",
+  ...industries.map((i) => i.href),
+  "/pricing",
+  "/how-it-works",
+  "/free-trial",
+  "/about",
+  "/referral-program",
+  "/careers",
+  "/faq",
+  "/book-a-call",
+  "/contact",
+  "/privacy-policy",
+  "/terms-of-service",
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return routes.map((path) => ({

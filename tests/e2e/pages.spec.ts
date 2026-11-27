@@ -1,7 +1,34 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-const pages = ["/pricing", "/how-it-works", "/free-trial", "/book-a-call"];
+const pages = [
+  "/services",
+  "/services/administrative-executive-support",
+  "/services/customer-support",
+  "/services/sales-lead-generation",
+  "/services/marketing-creative",
+  "/services/bookkeeping-finance",
+  "/services/technical-automation",
+  "/industries",
+  "/industries/construction-remodeling",
+  "/industries/real-estate",
+  "/industries/cleaning-janitorial",
+  "/industries/professional-services",
+  "/industries/digital-marketing-agencies",
+  "/industries/logistics",
+  "/industries/ecommerce",
+  "/pricing",
+  "/how-it-works",
+  "/free-trial",
+  "/about",
+  "/referral-program",
+  "/careers",
+  "/faq",
+  "/book-a-call",
+  "/contact",
+  "/privacy-policy",
+  "/terms-of-service",
+];
 
 for (const path of pages) {
   test.describe(path, () => {
@@ -30,4 +57,28 @@ test("pricing FAQ answers are in the HTML and match the approved terms", async (
 test("example workflows are labelled as illustrative", async ({ page }) => {
   await page.goto("/how-it-works");
   await expect(page.getByText("Illustrative example", { exact: true })).toHaveCount(3);
+});
+
+test("referral page keeps all 13 terms and the 20% credit", async ({ page }) => {
+  await page.goto("/referral-program");
+  await expect(page.locator("#terms ol > li")).toHaveCount(13);
+  await expect(page.getByText(/20%/).first()).toBeVisible();
+});
+
+test("legal pages show the draft notice until approved", async ({ page }) => {
+  for (const path of ["/privacy-policy", "/terms-of-service"]) {
+    await page.goto(path);
+    await expect(page.getByText("Draft for legal review: not yet in effect.")).toBeVisible();
+  }
+});
+
+test("every internal link in the header and footer resolves", async ({ page, request }) => {
+  await page.goto("/");
+  const hrefs = await page.locator("header a[href^='/'], footer a[href^='/']").evaluateAll((els) =>
+    [...new Set(els.map((e) => e.getAttribute("href")!))],
+  );
+  for (const href of hrefs) {
+    const res = await request.get(href);
+    expect(res.status(), href).toBe(200);
+  }
 });

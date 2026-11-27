@@ -45,7 +45,7 @@ const legacyRedirects: Array<[string, string]> = [
   ["/industries-we-serve", "/industries"],
   ["/va-pricing-guide", "/pricing"],
   ["/case-studies-2", "/how-it-works"],
-  ["/Contact", "/contact"],
+  // "/Contact" is not listed: Next.js matches paths case-insensitively, so /Contact already serves /contact.
 ];
 
 const nextConfig: NextConfig = {

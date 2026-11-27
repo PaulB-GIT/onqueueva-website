@@ -45,3 +45,14 @@ const usd2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD"
 
 export const formatMonthly = (n: number) => usd0.format(n);
 export const formatHourly = (n: number) => usd2.format(n);
+
+/** Lowest Lite price for a set of roles (Entry level, the cheapest band among them). */
+export function fromPriceForRoles(roleNames: string[]): number | undefined {
+  const bands = roles.filter((r) => roleNames.includes(r.name)).map((r) => r.band);
+  if (bands.length === 0) return undefined;
+  return Math.min(...bands.map((b) => monthlyPrice(b, "entry", "lite")));
+}
+
+export function rolesInCategory(category: string): string[] {
+  return roles.filter((r) => r.category === category).map((r) => r.name);
+}
